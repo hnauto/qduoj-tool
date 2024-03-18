@@ -39,7 +39,8 @@
    - **Import QDUOJ Problems (beta)**
    - **Choose File**：选择转换后的题库文件。
    - **Upload**：上传文件到OJ系统。
-![]([https://github.com/Sophia-11/Awesome-CV-Paper-Review/blob/master/images/8.jpg](https://github.com/hnauto/qduoj-tool/blob/main/ui.png))
+
 请按照上述步骤操作，如有疑问，请参阅相关文档或联系技术支持。
+![CSDN图标](ui.png "UI")
 ## 发行版
 [下载](https://github.com/hnauto/qduoj-tool/releases/download/untagged-dec2a18a9b4cd698356a/qduoj_tool.exe)

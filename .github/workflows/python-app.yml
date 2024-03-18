@@ -1,33 +1,24 @@
-name: Package qdaou_oj with Window
+name: Build GUI exe with Pyinstaller
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'test build tags'
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Package Application
+      uses: JackMcKew/pyinstaller-action-windows@main
       with:
-        python-version: '3.x'
+        path: .
 
-    - name: Install PyInstaller
-      run: pip install pyinstaller
-
-    - name: Package Application with PyInstaller (Windowed)
-      run: pyinstaller --windowed --onefile qdaou_oj.py
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
-        name: qdaou_oj-windowed
-        path: qdaou_oj.py/dist/qdaou_oj.exe
+        name: my-app
+        path: dist/windows

@@ -1,0 +1,33 @@
+name: Package qdaou_oj with Window
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install PyInstaller
+      run: pip install pyinstaller
+
+    - name: Package Application with PyInstaller (Windowed)
+      run: pyinstaller --windowed --onefile qdaou_oj.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: qdaou_oj-windowed
+        path: qdaou_oj.py/dist/qdaou_oj.exe

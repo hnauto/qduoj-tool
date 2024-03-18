@@ -1,0 +1,28 @@
+name: Build Windows Executable
+
+on: [push, pull_request]  # 触发工作流的事件
+
+jobs:
+  build:
+    runs-on: windows-latest  # 使用最新的Windows虚拟环境
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # 检出仓库代码
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # 选择你需要的Python版本
+
+    - name: Install PyInstaller
+      run: pip install pyinstaller pywin32  # 安装PyInstaller和pywin32
+
+    - name: Build exe
+      run: pyinstaller --onefile --windowed qduoj_tool.py  # 打包main.py为单个exe文件
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: main_exe
+        path: dist/qduoj_tool.exe  # 上传构建好的exe文件作为工件
